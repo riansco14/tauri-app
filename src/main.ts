@@ -1,4 +1,4 @@
-//import { invoke } from "@tauri-apps/api/core";
+import { invoke } from "@tauri-apps/api/core";
 import IMask from "imask";
 
 let container: HTMLElement | null;
@@ -49,10 +49,19 @@ window.addEventListener("DOMContentLoaded", () => {
     firstLoading = false;
   }
 
-  document.querySelector("#greet-form")?.addEventListener("submit", (e) => {
-    e.preventDefault();
-    //greet();
-  });
+  document
+    .querySelector("#greet-form")
+    ?.addEventListener("submit", async (e) => {
+      e.preventDefault();
+      if (cpfMasks.length > 0 && cpfMasks[0].unmaskedValue) {
+        const result = await invoke("change_status", {
+          cpfString: cpfMasks[0].unmaskedValue,
+        });
+        document.getElementById("valorRequest")?.innerText = "Valor: " + result;
+      }
+
+      //greet();
+    });
 
   addBtn?.addEventListener("click", criarInputCPF);
 
