@@ -32,7 +32,7 @@ jobs:
         shell: pwsh
         run: |
           Compress-Archive `
-            -Path "src-tauri/target/release/bundle/msi/*.exe" `
+            -Path "src-tauri\target\release\tauri-app.exe" `
             -DestinationPath "app-windows.zip"
 
       - name: Create release
