@@ -39,6 +39,13 @@ jobs:
         uses: softprops/action-gh-release@v2
         with:
           files: app-windows.zip
+      - name: Show current directory
+        shell: pwsh
+        run: Get-Location
+
+      - name: Show zip file
+        shell: pwsh
+        run: Get-ChildItem -Recurse *.zip
 
 
 # Pipeline para todas versões
