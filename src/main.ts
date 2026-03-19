@@ -3,6 +3,7 @@ import IMask from "imask";
 
 let container: HTMLElement | null;
 let addBtn: HTMLElement | null;
+let valorRequest: HTMLElement | null;
 let enviarBtn: HTMLElement | null;
 
 let firstLoading = true;
@@ -43,6 +44,7 @@ window.addEventListener("DOMContentLoaded", () => {
   container = document.getElementById("cpfs-container");
   addBtn = document.getElementById("addCpf");
   enviarBtn = document.getElementById("enviar");
+  valorRequest = document.getElementById("valorRequest");
 
   if (firstLoading) {
     criarInputCPF();
@@ -57,7 +59,7 @@ window.addEventListener("DOMContentLoaded", () => {
         const result = await invoke("change_status", {
           cpfString: cpfMasks[0].unmaskedValue,
         });
-        document.getElementById("valorRequest")?.innerText = "Valor: " + result;
+        if (valorRequest) valorRequest.textContent = `Valor: ${result}`;
       }
 
       //greet();
