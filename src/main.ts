@@ -56,10 +56,14 @@ window.addEventListener("DOMContentLoaded", () => {
     ?.addEventListener("submit", async (e) => {
       e.preventDefault();
       if (cpfMasks.length > 0 && cpfMasks[0].unmaskedValue) {
-        const result = await invoke("change_status", {
-          cpfString: cpfMasks[0].unmaskedValue,
-        });
-        if (valorRequest) valorRequest.textContent = `Valor: ${result}`;
+        try {
+          const result = await invoke("change_status", {
+            cpfString: cpfMasks[0].unmaskedValue,
+          });
+          if (valorRequest) valorRequest.textContent = `Valor: ${result}`;
+        } catch (error) {
+          if (valorRequest) valorRequest.textContent = `${String(error)}`;
+        }
       }
 
       //greet();
