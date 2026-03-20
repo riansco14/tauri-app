@@ -3,18 +3,18 @@ use serde::{Deserialize, Serialize};
 
 #[derive(Serialize)]
 struct ChangeStatusResponse {
-    last_id: Option<i64>,
-    status: Option<i64>,
+    last_id: Option<String>,
+    status: Option<String>,
 }
 
 #[derive(Deserialize, Debug)]
 struct HistoryItem {
-    id: i64,
+    id: String,
 }
 
 #[derive(Deserialize, Debug)]
 struct PatchResponse {
-    status: Option<i64>,
+    status: Option<String>,
 }
 
 #[tauri::command]
@@ -56,7 +56,7 @@ async fn change_status(cpf_string: String) -> Result<ChangeStatusResponse, Strin
         .await
         .map_err(|e| format!("erro lendo json do historico: {e}"))?;
 
-    let last_id = history_items.first().map(|x| x.id);
+    let last_id = history_items.first().map(|x| x.id.clone());
 
     let Some(last_id_value) = last_id else {
         return Ok(ChangeStatusResponse {
