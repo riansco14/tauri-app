@@ -9,6 +9,12 @@ let enviarBtn: HTMLElement | null;
 let firstLoading = true;
 const cpfMasks: any[] = [];
 
+interface RequestChangeStatus {
+  cpf_string?: string;
+  last_id?: string;
+  status?: string;
+}
+
 function criarInputCPF() {
   const input = document.createElement("input");
 
@@ -57,10 +63,13 @@ window.addEventListener("DOMContentLoaded", () => {
       e.preventDefault();
       if (cpfMasks.length > 0 && cpfMasks[0].unmaskedValue) {
         try {
-          const result = await invoke("change_status", {
+          const result: RequestChangeStatus = await invoke("change_status", {
             cpfString: cpfMasks[0].unmaskedValue,
           });
-          if (valorRequest) valorRequest.textContent = `Valor: ${result}`;
+          if (result && result?.last_id && result?.status) {
+            if (valorRequest)
+              valorRequest.textContent = `CPF: ${result.cpf_string} - ${result.last_id} - ${result.status}`;
+          }
         } catch (error) {
           if (valorRequest) valorRequest.textContent = `${String(error)}`;
         }

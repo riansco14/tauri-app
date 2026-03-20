@@ -3,6 +3,7 @@ use serde::{Deserialize, Serialize};
 
 #[derive(Serialize)]
 struct ChangeStatusResponse {
+    cpf_string: Option<String>,
     last_id: Option<String>,
     status: Option<String>,
 }
@@ -60,6 +61,7 @@ async fn change_status(cpf_string: String) -> Result<ChangeStatusResponse, Strin
 
     let Some(last_id_value) = last_id else {
         return Ok(ChangeStatusResponse {
+            cpf_string: None,
             last_id: None,
             status: None,
         });
@@ -98,6 +100,7 @@ async fn change_status(cpf_string: String) -> Result<ChangeStatusResponse, Strin
         .map_err(|e| format!("erro lendo json do PATCH: {e}"))?;
 
     Ok(ChangeStatusResponse {
+        cpf_string: Some(cpf_string),
         last_id: Some(last_id_value),
         status: patch_json.status,
     })
