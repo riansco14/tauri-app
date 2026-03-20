@@ -1,50 +1,37 @@
 <!doctype html>
-<html lang="en">
+<html lang="pt-BR">
   <head>
     <meta charset="UTF-8" />
     <link rel="stylesheet" href="/src/styles.css" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Tauri App</title>
+    <title>SuperApp XID Des Bypass</title>
     <script type="module" src="/src/main.ts" defer></script>
   </head>
 
   <body>
     <main class="container">
-      <h1>Welcome to Tauri</h1>
-
-      <div class="row">
-        <a href="https://vite.dev" target="_blank">
-          <img src="/src/assets/vite.svg" class="logo vite" alt="Vite logo" />
-        </a>
-        <a href="https://tauri.app" target="_blank">
-          <img
-            src="/src/assets/tauri.svg"
-            class="logo tauri"
-            alt="Tauri logo"
-          />
-        </a>
-        <a href="https://www.typescriptlang.org/docs" target="_blank">
-          <img
-            src="/src/assets/typescript.svg"
-            class="logo typescript"
-            alt="typescript logo"
-          />
-        </a>
+      <div
+        style="
+          display: flex;
+          align-items: center;
+          flex-direction: column;
+          padding: 1rem;
+        "
+      >
+        <h1>SuperApp XID Des Bypass</h1>
+        <img src="/src/assets/CaixaLogo.svg" width="120" />
       </div>
-      <p id="valorRequest">
-        Click on the Tauri logo to learn more about the framework
-      </p>
 
-      <form class="row" id="greet-form">
-        <div
-          id="cpfs-container"
-          style="display: flex; flex-direction: column; gap: 8px"
-        ></div>
+      <form id="greet-form">
+        <div id="cpfs-container" class="cpfs-container"></div>
 
-        <button id="addCpf">Adicionar CPF</button>
-        <button id="enviar">Enviar</button>
+        <div class="actions">
+          <button type="button" id="addCpf">Adicionar CPF</button>
+          <button type="submit" id="enviar">Enviar</button>
+        </div>
       </form>
-      <p id="greet-msg"></p>
+
+      <div id="results-container" class="results-container"></div>
     </main>
   </body>
 </html>
