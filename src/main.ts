@@ -15,7 +15,7 @@ let container: HTMLElement | null;
 let addBtn: HTMLButtonElement | null;
 let resultsContainer: HTMLElement | null;
 
-const cpfMasks: IMask.InputMask<any>[] = [];
+const cpfMasks: any[] = [];
 
 function formatarCpf(cpf: string): string {
   if (cpf.length !== 11) return cpf;
